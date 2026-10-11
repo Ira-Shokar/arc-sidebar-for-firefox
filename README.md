@@ -1,0 +1,1 @@
+# arc-sidebar-for-firefox
