@@ -1,0 +1,1306 @@
+/* Hide the toolbar row. The address field is shown in the tab sidebar instead. */
+:root:not([customizing]) #nav-bar {
+  visibility: collapse !important;
+}
+
+/* Drop every toolbar button except the address field, window buttons, and navigation. */
+:root:not([customizing]) #nav-bar > :not(#nav-bar-customization-target, .titlebar-buttonbox-container),
+:root:not([customizing]) #nav-bar-customization-target > :not(#urlbar-container, #back-button, #forward-button, #stop-reload-button, #unified-extensions-button) {
+  display: none !important;
+}
+
+/* macOS draws the traffic lights inside this box. Keep it at the top of the sidebar. */
+:root:not([customizing]) #nav-bar > .titlebar-buttonbox-container {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  z-index: 1002 !important;
+  top: 12px !important;
+  left: 12px !important;
+  width: 70px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+
+:root:not([customizing]) #nav-bar > .titlebar-buttonbox-container > .titlebar-buttonbox {
+  display: flex !important;
+  visibility: visible !important;
+  margin: 0 !important;
+}
+
+/* Lights live in the sidebar. Hide them when the sidebar is collapsed. */
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #nav-bar > .titlebar-buttonbox-container {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/*
+ * Back, forward, and reload sit on the right edge of the sidebar,
+ * on the same row as the traffic lights. The glyphs are drawn on the
+ * buttons themselves. Reload was easy to lose inside its wrapper.
+ */
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #sidebar-container {
+  anchor-name: --arc-sidebar;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-reload-button {
+  display: flex !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #back-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #forward-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-button {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  position-anchor: --arc-sidebar !important;
+  z-index: 1002 !important;
+  top: 7px !important;
+  width: 26px !important;
+  min-width: 26px !important;
+  max-width: 26px !important;
+  height: 26px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 14px 14px !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #back-button {
+  left: 144px !important;
+  left: calc(anchor(right) - 96px) !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #forward-button {
+  left: 174px !important;
+  left: calc(anchor(right) - 66px) !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-button {
+  left: 204px !important;
+  left: calc(anchor(right) - 36px) !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button[displaystop],
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button:not([displaystop]) + #stop-button {
+  display: none !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #back-button .toolbarbutton-icon,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #forward-button .toolbarbutton-icon,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button .toolbarbutton-icon,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-button .toolbarbutton-icon {
+  opacity: 0 !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #back-button {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M8.6 3 L4.6 7 L8.6 11' fill='none' stroke='%238e8e96' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #forward-button {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M5.4 3 L9.4 7 L5.4 11' fill='none' stroke='%238e8e96' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M11.2 7 a4.2 4.2 0 1 1-1.2-2.9' fill='none' stroke='%238e8e96' stroke-width='1.35' stroke-linecap='round'/%3E%3Cpath d='M11.3 2.6 V5.2 H8.7' fill='none' stroke='%238e8e96' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-button {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Crect x='4.2' y='4.2' width='5.6' height='5.6' rx='1' fill='%238e8e96'/%3E%3C/svg%3E") !important;
+}
+
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #back-button,
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #forward-button,
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #unified-extensions-button,
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #stop-reload-button {
+  display: none !important;
+}
+
+/*
+ * The sidebar paints above the toolbar, so the address field and traffic
+ * lights have to be lifted with the whole toolbox or they stay hidden.
+ */
+:root:not([customizing]) #navigator-toolbox {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #navigator-toolbox {
+  pointer-events: none !important;
+}
+
+/* Search and URLs live at the top of the open tab sidebar. */
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #nav-bar {
+  visibility: visible !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  position-anchor: --arc-sidebar !important;
+  z-index: 1000 !important;
+  top: 42px !important;
+  left: 10px !important;
+  left: calc(anchor(left) + 10px) !important;
+  width: 224px !important;
+  width: calc(anchor-size(width) - 20px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar-container,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar[breakout],
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar[breakout][breakout-extend] {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+/*
+ * Sidebar closed: keep the address field focusable, or Cmd+T opens a tab
+ * and the keystroke never lands in the field. It stays invisible until focused.
+ */
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #nav-bar:not(:focus-within) {
+  visibility: visible !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  z-index: 1000 !important;
+  top: 18vh !important;
+  left: 18vw !important;
+  width: 64vw !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 4px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #nav-bar:not(:focus-within) #urlbar-container {
+  opacity: 0 !important;
+}
+
+/* Cmd+T and Cmd+L while the sidebar is closed open the field so you can type. */
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #nav-bar:focus-within {
+  visibility: visible !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  z-index: 1000 !important;
+  top: 18vh !important;
+  left: 18vw !important;
+  width: 64vw !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 4px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #nav-bar:focus-within #urlbar-container,
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #urlbar,
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #urlbar[breakout],
+:root:not([customizing]):not(:has(#sidebar-container[sidebar-launcher-expanded])) #urlbar[breakout][breakout-extend] {
+  opacity: 1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+/* Room for the window buttons and the address field above the tabs. */
+sidebar-main {
+  padding-top: 86px !important;
+}
+
+/*
+ * Collapsed hover sidebar: take the icon strip out of the page so the
+ * window is full width. A narrow invisible edge stays put, because Firefox
+ * only opens the sidebar when the pointer is inside that box.
+ * Cmd+B docks it, and then the page resizes again.
+ */
+:root[sidebar-expand-on-hover] #browser {
+  position: relative !important;
+}
+
+:root[sidebar-expand-on-hover] #sidebar-container:not([sidebar-launcher-expanded]):not([sidebar-ongoing-animations]) {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset-block: 0 !important;
+  inset-inline-start: 0 !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+:root[sidebar-expand-on-hover] #sidebar-container:not([sidebar-launcher-expanded]):not([sidebar-ongoing-animations]) sidebar-main {
+  width: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  height: 100% !important;
+}
+
+:root[sidebar-expand-on-hover] #sidebar-launcher-splitter {
+  visibility: collapse !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+}
+
+:root[sidebar-expand-on-hover] #tabbrowser-tabbox {
+  margin-inline: 0 !important;
+}
+
+/*
+ * Pinned tabs as an Arc-style icon grid, four across.
+ * The row layout lives in a shadow tree that user styles cannot reach, so
+ * each pin is placed by hand. The row is centered on the sidebar width.
+ */
+@property --pin-i { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@property --pin-count { syntax: "<integer>"; inherits: true; initial-value: 0; }
+@property --pins-per-row { syntax: "<integer>"; inherits: true; initial-value: 4; }
+
+#pinned-tabs-container {
+  /* Tiles keep one size. A wider sidebar fits more of them per row, and the
+     spare room is shared out as even gaps. The column count changes at the
+     container breakpoints below. */
+  --pins-per-row: 3;
+  --pin-inset: 8px;
+  --pin-gap: 3px;
+  --pin-size: min(44px, calc((100cqw - 2 * var(--pin-inset) - (var(--pins-per-row) - 1) * var(--pin-gap)) / var(--pins-per-row)));
+  --pin-pitch: calc((100cqw - 2 * var(--pin-inset) - var(--pin-size)) / (var(--pins-per-row) - 1));
+  --pin-grid-width: calc(var(--pins-per-row) * var(--pin-size) + (var(--pins-per-row) - 1) * var(--pin-gap));
+  --pin-h: var(--pin-size);
+  --pin-pitch-y: var(--pin-pitch);
+  --pin-count: 0;
+  --grid-cap: 20;
+  --grid-count: var(--pin-count);
+  --grid-count: min(var(--pin-count), var(--grid-cap));
+  --list-count: 0;
+  --list-count: max(var(--pin-count) - var(--grid-cap), 0);
+  --list-row: 34px;
+  --pin-rows: max(1, round(up, var(--grid-count) / var(--pins-per-row)));
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  width: 100cqw !important;
+  min-width: 100% !important;
+  min-width: 100cqw !important;
+  max-width: none !important;
+  max-width: 100cqw !important;
+  align-self: stretch !important;
+  height: calc((var(--pin-rows) - 1) * var(--pin-pitch-y) + var(--pin-h) + var(--list-count) * var(--list-row) + min(var(--list-count), 1) * 12px) !important;
+  min-height: calc((var(--pin-rows) - 1) * var(--pin-pitch-y) + var(--pin-h) + var(--list-count) * var(--list-row) + min(var(--list-count), 1) * 12px) !important;
+  max-height: calc((var(--pin-rows) - 1) * var(--pin-pitch-y) + var(--pin-h) + var(--list-count) * var(--list-row) + min(var(--list-count), 1) * 12px) !important;
+  overflow: visible !important;
+  padding: 4px 0 0 !important;
+  margin: 0 !important;
+}
+
+@container vertical-tabs-container (min-width: 197px) { #pinned-tabs-container { --pins-per-row: 4; } }
+@container vertical-tabs-container (min-width: 243px) { #pinned-tabs-container { --pins-per-row: 5; } }
+@container vertical-tabs-container (min-width: 289px) { #pinned-tabs-container { --pins-per-row: 6; } }
+@container vertical-tabs-container (min-width: 335px) { #pinned-tabs-container { --pins-per-row: 7; } }
+@container vertical-tabs-container (min-width: 381px) { #pinned-tabs-container { --pins-per-row: 8; } }
+@container vertical-tabs-container (min-width: 427px) { #pinned-tabs-container { --pins-per-row: 9; } }
+@container vertical-tabs-container (min-width: 473px) { #pinned-tabs-container { --pins-per-row: 10; } }
+@container vertical-tabs-container (min-width: 519px) { #pinned-tabs-container { --pins-per-row: 11; } }
+@container vertical-tabs-container (min-width: 565px) { #pinned-tabs-container { --pins-per-row: 12; } }
+
+#pinned-tabs-container:not(:has(.tabbrowser-tab[pinned])) {
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+}
+
+/*
+ * While a tab is dragged, drop the hand-placed grid. Firefox positions the
+ * dragged tab from the tab strip, and a forced top/left parks it above the pointer.
+ */
+#tabbrowser-tabs[movingtab] {
+  position: relative !important;
+}
+
+#tabbrowser-tabs[movingtab] #pinned-tabs-container {
+  position: static !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned] {
+  --pin-col: mod(var(--pin-i), var(--pins-per-row));
+  --pin-row: round(down, var(--pin-i) / var(--pins-per-row));
+  position: absolute !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  top: calc(var(--pin-row) * var(--pin-pitch-y)) !important;
+  left: calc(var(--pin-inset) + var(--pin-col) * var(--pin-pitch)) !important;
+  width: var(--pin-size) !important;
+  min-width: var(--pin-size) !important;
+  max-width: var(--pin-size) !important;
+  height: var(--pin-h) !important;
+  min-height: var(--pin-h) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(1) { --pin-i: 0; }
+.tabbrowser-tab[pinned]:nth-child(2) { --pin-i: 1; }
+.tabbrowser-tab[pinned]:nth-child(3) { --pin-i: 2; }
+.tabbrowser-tab[pinned]:nth-child(4) { --pin-i: 3; }
+.tabbrowser-tab[pinned]:nth-child(5) { --pin-i: 4; }
+.tabbrowser-tab[pinned]:nth-child(6) { --pin-i: 5; }
+.tabbrowser-tab[pinned]:nth-child(7) { --pin-i: 6; }
+.tabbrowser-tab[pinned]:nth-child(8) { --pin-i: 7; }
+.tabbrowser-tab[pinned]:nth-child(9) { --pin-i: 8; }
+.tabbrowser-tab[pinned]:nth-child(10) { --pin-i: 9; }
+.tabbrowser-tab[pinned]:nth-child(11) { --pin-i: 10; }
+.tabbrowser-tab[pinned]:nth-child(12) { --pin-i: 11; }
+.tabbrowser-tab[pinned]:nth-child(13) { --pin-i: 12; }
+.tabbrowser-tab[pinned]:nth-child(14) { --pin-i: 13; }
+.tabbrowser-tab[pinned]:nth-child(15) { --pin-i: 14; }
+.tabbrowser-tab[pinned]:nth-child(16) { --pin-i: 15; }
+.tabbrowser-tab[pinned]:nth-child(17) { --pin-i: 16; }
+.tabbrowser-tab[pinned]:nth-child(18) { --pin-i: 17; }
+.tabbrowser-tab[pinned]:nth-child(19) { --pin-i: 18; }
+.tabbrowser-tab[pinned]:nth-child(20) { --pin-i: 19; }
+.tabbrowser-tab[pinned]:nth-child(21) { --pin-i: 20; }
+.tabbrowser-tab[pinned]:nth-child(22) { --pin-i: 21; }
+.tabbrowser-tab[pinned]:nth-child(23) { --pin-i: 22; }
+.tabbrowser-tab[pinned]:nth-child(24) { --pin-i: 23; }
+.tabbrowser-tab[pinned]:nth-child(25) { --pin-i: 24; }
+.tabbrowser-tab[pinned]:nth-child(26) { --pin-i: 25; }
+.tabbrowser-tab[pinned]:nth-child(27) { --pin-i: 26; }
+.tabbrowser-tab[pinned]:nth-child(28) { --pin-i: 27; }
+.tabbrowser-tab[pinned]:nth-child(29) { --pin-i: 28; }
+.tabbrowser-tab[pinned]:nth-child(30) { --pin-i: 29; }
+.tabbrowser-tab[pinned]:nth-child(31) { --pin-i: 30; }
+.tabbrowser-tab[pinned]:nth-child(32) { --pin-i: 31; }
+.tabbrowser-tab[pinned]:nth-child(33) { --pin-i: 32; }
+.tabbrowser-tab[pinned]:nth-child(34) { --pin-i: 33; }
+.tabbrowser-tab[pinned]:nth-child(35) { --pin-i: 34; }
+.tabbrowser-tab[pinned]:nth-child(36) { --pin-i: 35; }
+.tabbrowser-tab[pinned]:nth-child(37) { --pin-i: 36; }
+.tabbrowser-tab[pinned]:nth-child(38) { --pin-i: 37; }
+.tabbrowser-tab[pinned]:nth-child(39) { --pin-i: 38; }
+.tabbrowser-tab[pinned]:nth-child(40) { --pin-i: 39; }
+
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(1)) { --pin-count: 1; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(2)) { --pin-count: 2; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(3)) { --pin-count: 3; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(4)) { --pin-count: 4; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(5)) { --pin-count: 5; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(6)) { --pin-count: 6; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(7)) { --pin-count: 7; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(8)) { --pin-count: 8; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(9)) { --pin-count: 9; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(10)) { --pin-count: 10; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(11)) { --pin-count: 11; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(12)) { --pin-count: 12; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(13)) { --pin-count: 13; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(14)) { --pin-count: 14; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(15)) { --pin-count: 15; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(16)) { --pin-count: 16; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(17)) { --pin-count: 17; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(18)) { --pin-count: 18; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(19)) { --pin-count: 19; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(20)) { --pin-count: 20; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(21)) { --pin-count: 21; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(22)) { --pin-count: 22; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(23)) { --pin-count: 23; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(24)) { --pin-count: 24; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(25)) { --pin-count: 25; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(26)) { --pin-count: 26; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(27)) { --pin-count: 27; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(28)) { --pin-count: 28; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(29)) { --pin-count: 29; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(30)) { --pin-count: 30; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(31)) { --pin-count: 31; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(32)) { --pin-count: 32; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(33)) { --pin-count: 33; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(34)) { --pin-count: 34; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(35)) { --pin-count: 35; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(36)) { --pin-count: 36; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(37)) { --pin-count: 37; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(38)) { --pin-count: 38; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(39)) { --pin-count: 39; }
+#pinned-tabs-container:has(.tabbrowser-tab[pinned]:nth-child(40)) { --pin-count: 40; }
+
+.tabbrowser-tab[pinned] .tab-label-container,
+.tabbrowser-tab[pinned] .tab-close-button {
+  display: none !important;
+}
+
+.tabbrowser-tab[pinned] .tab-stack,
+.tabbrowser-tab[pinned] .tab-content,
+.tabbrowser-tab[pinned] .tab-icon-stack {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.tabbrowser-tab[pinned] .tab-background {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 12px !important;
+  margin: 0 !important;
+}
+
+/*
+ * Tab groups as Arc folders. The pages sit in a shadow slot that only keeps
+ * one row, so each page is placed by hand under the folder name.
+ */
+@property --folder-i { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@property --folder-count { syntax: "<integer>"; inherits: true; initial-value: 0; }
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group {
+  --folder-label: 30px;
+  --folder-row: 30px;
+  --folder-count: 0;
+}
+
+/* While a tab is dragged, Firefox decides where it lands from the real
+   layout, so folders go back to their native layout until it is dropped. */
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group {
+  display: block !important;
+}
+
+/*
+ * While a tab is dragged, folder pages go back to a normal list so Firefox
+ * can slide them out of the way and drop the tab where it is shown.
+ */
+#tabbrowser-tabs[orient="vertical"][expanded][movingtab] tab-group:not([collapsed]) > .tabbrowser-tab:not([dragtarget]) {
+  height: 32px !important;
+  min-height: 32px !important;
+  margin-block: 2px !important;
+  margin-inline: 22px 6px !important;
+  padding-block: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  overflow: visible !important;
+  height: calc(var(--folder-label) + var(--folder-count) * var(--folder-row)) !important;
+  min-height: calc(var(--folder-label) + var(--folder-count) * var(--folder-row)) !important;
+  max-height: none !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group[collapsed] {
+  height: var(--folder-label) !important;
+  min-height: var(--folder-label) !important;
+  max-height: var(--folder-label) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tab-group-label-container {
+  margin: 0 !important;
+  padding: 0 8px !important;
+  height: var(--folder-label) !important;
+  min-height: var(--folder-label) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tab-group-label-container::after,
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-group-overflow-count-container {
+  display: none !important;
+  content: none !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-group-label {
+  width: 100% !important;
+  max-width: none !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  line-height: 28px !important;
+  margin: 0 !important;
+  padding-inline: 32px 8px !important;
+  border-radius: 8px !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-position: 7px center !important;
+  background-size: 18px 18px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M2 5.2c0-1 .8-1.7 1.7-1.7h3.1c.4 0 .8.2 1.1.5l.9 1h5.5c.9 0 1.7.8 1.7 1.7v6.1c0 1-.8 1.7-1.7 1.7H3.7c-.9 0-1.7-.7-1.7-1.7V5.2z' fill='%233b3bff'/%3E%3C/svg%3E") !important;
+  color: light-dark(#1d1d20, #f4f4f8) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-align: start !important;
+  font-weight: 650 !important;
+  font-size: 14px !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:not([collapsed]) > .tab-group-label-container .tab-group-label {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M2 5.2c0-1 .8-1.7 1.7-1.7h3.1c.4 0 .8.2 1.1.5l.9 1h4.7c.9 0 1.6.7 1.6 1.6V8H2z' fill='%232a2ad0'/%3E%3Cpath d='M3.6 7.4h12.9c.8 0 1.4.7 1.2 1.5l-1.2 4.8c-.2.7-.8 1.2-1.6 1.2H3.7c-.9 0-1.7-.7-1.7-1.7V9.1c0-.9.8-1.7 1.6-1.7z' fill='%234f4fff'/%3E%3C/svg%3E") !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group[hasactivetab] > .tab-group-label-container .tab-group-label,
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-group-label-hover-highlight:hover .tab-group-label {
+  background-color: color-mix(in srgb, currentColor 10%, transparent) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group:not([collapsed]) > .tabbrowser-tab {
+  --folder-i: 0;
+  position: absolute !important;
+  display: flex !important;
+  visibility: visible !important;
+  top: calc(var(--folder-label) + var(--folder-i) * var(--folder-row)) !important;
+  left: 22px !important;
+  right: 6px !important;
+  width: auto !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding-block: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(1 of .tabbrowser-tab) { --folder-i: 0; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(2 of .tabbrowser-tab) { --folder-i: 1; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(3 of .tabbrowser-tab) { --folder-i: 2; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(4 of .tabbrowser-tab) { --folder-i: 3; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(5 of .tabbrowser-tab) { --folder-i: 4; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(6 of .tabbrowser-tab) { --folder-i: 5; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(7 of .tabbrowser-tab) { --folder-i: 6; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(8 of .tabbrowser-tab) { --folder-i: 7; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(9 of .tabbrowser-tab) { --folder-i: 8; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(10 of .tabbrowser-tab) { --folder-i: 9; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(11 of .tabbrowser-tab) { --folder-i: 10; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(12 of .tabbrowser-tab) { --folder-i: 11; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(13 of .tabbrowser-tab) { --folder-i: 12; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(14 of .tabbrowser-tab) { --folder-i: 13; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(15 of .tabbrowser-tab) { --folder-i: 14; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(16 of .tabbrowser-tab) { --folder-i: 15; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(17 of .tabbrowser-tab) { --folder-i: 16; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(18 of .tabbrowser-tab) { --folder-i: 17; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(19 of .tabbrowser-tab) { --folder-i: 18; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(20 of .tabbrowser-tab) { --folder-i: 19; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(21 of .tabbrowser-tab) { --folder-i: 20; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(22 of .tabbrowser-tab) { --folder-i: 21; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(23 of .tabbrowser-tab) { --folder-i: 22; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(24 of .tabbrowser-tab) { --folder-i: 23; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(25 of .tabbrowser-tab) { --folder-i: 24; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(26 of .tabbrowser-tab) { --folder-i: 25; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(27 of .tabbrowser-tab) { --folder-i: 26; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(28 of .tabbrowser-tab) { --folder-i: 27; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(29 of .tabbrowser-tab) { --folder-i: 28; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(30 of .tabbrowser-tab) { --folder-i: 29; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(31 of .tabbrowser-tab) { --folder-i: 30; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(32 of .tabbrowser-tab) { --folder-i: 31; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(33 of .tabbrowser-tab) { --folder-i: 32; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(34 of .tabbrowser-tab) { --folder-i: 33; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(35 of .tabbrowser-tab) { --folder-i: 34; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(36 of .tabbrowser-tab) { --folder-i: 35; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(37 of .tabbrowser-tab) { --folder-i: 36; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(38 of .tabbrowser-tab) { --folder-i: 37; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(39 of .tabbrowser-tab) { --folder-i: 38; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tabbrowser-tab:nth-child(40 of .tabbrowser-tab) { --folder-i: 39; }
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(1 of .tabbrowser-tab)) { --folder-count: 1; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(2 of .tabbrowser-tab)) { --folder-count: 2; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(3 of .tabbrowser-tab)) { --folder-count: 3; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(4 of .tabbrowser-tab)) { --folder-count: 4; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(5 of .tabbrowser-tab)) { --folder-count: 5; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(6 of .tabbrowser-tab)) { --folder-count: 6; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(7 of .tabbrowser-tab)) { --folder-count: 7; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(8 of .tabbrowser-tab)) { --folder-count: 8; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(9 of .tabbrowser-tab)) { --folder-count: 9; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(10 of .tabbrowser-tab)) { --folder-count: 10; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(11 of .tabbrowser-tab)) { --folder-count: 11; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(12 of .tabbrowser-tab)) { --folder-count: 12; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(13 of .tabbrowser-tab)) { --folder-count: 13; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(14 of .tabbrowser-tab)) { --folder-count: 14; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(15 of .tabbrowser-tab)) { --folder-count: 15; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(16 of .tabbrowser-tab)) { --folder-count: 16; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(17 of .tabbrowser-tab)) { --folder-count: 17; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(18 of .tabbrowser-tab)) { --folder-count: 18; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(19 of .tabbrowser-tab)) { --folder-count: 19; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(20 of .tabbrowser-tab)) { --folder-count: 20; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(21 of .tabbrowser-tab)) { --folder-count: 21; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(22 of .tabbrowser-tab)) { --folder-count: 22; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(23 of .tabbrowser-tab)) { --folder-count: 23; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(24 of .tabbrowser-tab)) { --folder-count: 24; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(25 of .tabbrowser-tab)) { --folder-count: 25; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(26 of .tabbrowser-tab)) { --folder-count: 26; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(27 of .tabbrowser-tab)) { --folder-count: 27; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(28 of .tabbrowser-tab)) { --folder-count: 28; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(29 of .tabbrowser-tab)) { --folder-count: 29; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(30 of .tabbrowser-tab)) { --folder-count: 30; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(31 of .tabbrowser-tab)) { --folder-count: 31; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(32 of .tabbrowser-tab)) { --folder-count: 32; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(33 of .tabbrowser-tab)) { --folder-count: 33; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(34 of .tabbrowser-tab)) { --folder-count: 34; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(35 of .tabbrowser-tab)) { --folder-count: 35; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(36 of .tabbrowser-tab)) { --folder-count: 36; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(37 of .tabbrowser-tab)) { --folder-count: 37; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(38 of .tabbrowser-tab)) { --folder-count: 38; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(39 of .tabbrowser-tab)) { --folder-count: 39; }
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:has(> .tabbrowser-tab:nth-child(40 of .tabbrowser-tab)) { --folder-count: 40; }
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group[collapsed] > .tabbrowser-tab,
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group[collapsed] > tab-split-view-wrapper {
+  display: none !important;
+}
+
+/*
+ * Arc surface. Flat sidebar, quiet rows, and folder icons.
+ * The bookmarks toolbar stays hidden.
+ */
+
+#PersonalToolbar {
+  visibility: collapse !important;
+  max-height: 0 !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+#sidebar-container {
+  /* Deep indigo fading to a plum glow at the bottom, like an Arc space. */
+  background-color: light-dark(#f4f4f6, #0f0d24) !important;
+  background-image:
+    radial-gradient(120% 50% at 50% 106%, light-dark(rgba(190, 150, 255, 0.2), rgba(120, 52, 150, 0.2)), transparent 72%),
+    linear-gradient(180deg, transparent 0%, light-dark(rgba(120, 100, 255, 0.04), rgba(70, 56, 150, 0.1)) 100%) !important;
+  color: light-dark(#1d1d20, #ececee) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+/* Docked with Cmd+B: the sidebar stays in the page and the window resizes.
+   Hover mode must not use this, or the open sidebar pushes the page
+   instead of covering it. */
+:root:not([customizing]):not([sidebar-expand-on-hover]):has(#sidebar-container[sidebar-launcher-expanded]) #sidebar-container {
+  position: relative !important;
+  border-inline-end: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06)) !important;
+  box-shadow: none !important;
+}
+
+:root:has(#sidebar-container[sidebar-launcher-expanded]) sidebar-main {
+  background: transparent !important;
+}
+
+#tabbrowser-tabs {
+  scrollbar-width: thin !important;
+  scrollbar-color: light-dark(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.18)) transparent !important;
+}
+
+/* Search field: a flat rounded well, like Arc. */
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar-background,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) .urlbar-background {
+  background-color: light-dark(#ffffff, rgba(255, 255, 255, 0.08)) !important;
+  border-color: transparent !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #urlbar-input,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) .urlbar-input {
+  font-size: 14px !important;
+  color: light-dark(#1d1d20, #ececee) !important;
+}
+
+/* Pins: soft tiles, no Firefox border. */
+.tabbrowser-tab[pinned] .tab-background {
+  background-color: light-dark(#ffffff, rgba(255, 255, 255, 0.1)) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 0 0 1px light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) !important;
+  outline: none !important;
+  border: 0 !important;
+}
+
+/* Open tabs: short rows, selection is a soft pill, close shows on hover. */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) {
+  color: light-dark(#1d1d20, #ececee) !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) .tab-background {
+  border-radius: 8px !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: transparent !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]):hover .tab-background {
+  background-color: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06)) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned])[selected] .tab-background {
+  background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.1)) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) .tab-close-button {
+  opacity: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  opacity: 0.85 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab .tab-context-line {
+  display: none !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-group-label-hover-highlight,
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-group-label {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-group-label-container:hover .tab-group-label {
+  background-color: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06)) !important;
+}
+
+#vertical-tabs-newtab-button,
+#tabs-newtab-button {
+  margin-inline: 8px !important;
+  border-radius: 8px !important;
+  color: light-dark(#6e6e76, #9a9aa3) !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+#vertical-tabs-newtab-button:hover,
+#tabs-newtab-button:hover {
+  background-color: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06)) !important;
+  color: light-dark(#1d1d20, #ececee) !important;
+}
+
+/* Address field: a plain rounded well. Drop the zoom badge, star, and lock. */
+:root:not([customizing]) #urlbar-zoom-button,
+:root:not([customizing]) #star-button-box,
+:root:not([customizing]) #star-button,
+:root:not([customizing]) #identity-box,
+:root:not([customizing]) #tracking-protection-icon-container,
+:root:not([customizing]) .urlbar-page-action:not(#translations-button, #reader-mode-button),
+:root:not([customizing]) #urlbar-go-button {
+  display: none !important;
+}
+
+:root:not([customizing]) #urlbar-input {
+  padding-inline: 12px !important;
+}
+
+/* Inset hairline under the pins, not a full-width Firefox splitter. */
+#tabbrowser-tabs[expanded] > #vertical-pinned-tabs-splitter {
+  border: 0 !important;
+  border-top: 0 !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 12px 16px 8px !important;
+  background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.1)) !important;
+  background-image: none !important;
+  border-radius: 1px !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) .tab-label {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Footer tools sit in one quiet row. */
+#sidebar-container {
+  --sidebar-launcher-button-padding-inline: 10px;
+  --toolbarbutton-icon-fill: light-dark(#6e6e76, #8e8e96);
+  --button-min-height: 28px;
+}
+
+/* Folders stay plain rows. No color chip, outline, or stripe beside the pages. */
+#tabbrowser-tabs[orient="vertical"] .tab-group-line {
+  display: none !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group > .tab-group-label-container .tab-group-label,
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group[collapsed] > .tab-group-label-container .tab-group-label {
+  background-color: transparent !important;
+  color: light-dark(#3a3a40, #d7d7de) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  max-width: none !important;
+  text-align: start !important;
+}
+
+/* One quiet column: folders, open tabs, and New Tab share the same inset. */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) {
+  margin-inline: 6px !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) .tab-icon-image {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.tabbrowser-tab[pinned] .tab-icon-stack {
+  position: relative !important;
+}
+
+.tabbrowser-tab[pinned] .tab-icon-image {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/*
+ * Pins after the 4×4 grid stay titled rows, in the same band as the folders.
+ * A folder itself cannot sit inside the icon grid.
+ */
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:nth-child(n + 21) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  margin: 1px 8px !important;
+  transform: none !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[pinned]:nth-child(21) {
+  margin-top: calc((var(--pin-rows) - 1) * var(--pin-pitch-y) + var(--pin-h) + 8px) !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-stack {
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Icon, then title, left to right, like any other row. */
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 9px !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding-inline: 10px 8px !important;
+  margin: 0 !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-icon-stack {
+  display: flex !important;
+  flex: 0 0 16px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-label-container {
+  display: flex !important;
+  flex: 1 1 0 !important;
+  align-items: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-label {
+  text-align: start !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+  color: light-dark(#1d1d20, #ececee) !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-icon-image {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: 16px !important;
+  height: 16px !important;
+  transform: none !important;
+}
+
+/* Quiet until hovered or open, the same as the rows below. */
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-background {
+  border-radius: 8px !important;
+  background-color: transparent !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21):hover .tab-background {
+  background-color: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06)) !important;
+}
+
+.tabbrowser-tab[pinned]:nth-child(n + 21)[selected] .tab-background {
+  background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.1)) !important;
+}
+
+/* The dot Firefox draws when a background tab changes its title or wants
+   attention. It is the green dot on the pins, painted on the tab content. */
+.tabbrowser-tab .tab-content,
+.tabbrowser-tab > .tab-stack > .tab-content {
+  background-image: none !important;
+}
+
+.tabbrowser-tab,
+#tabbrowser-tabs {
+  --tab-attention-dot-color: transparent !important;
+}
+
+/* Sound badges. The green circle is drawn on top of the site icon. */
+.tab-icon-overlay,
+.tab-audio-button,
+.tab-audio-button::part(button),
+.tab-sharing-icon-overlay,
+.tab-note-icon-overlay {
+  display: none !important;
+  visibility: collapse !important;
+  opacity: 0 !important;
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  list-style-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  fill: transparent !important;
+  color: transparent !important;
+  -moz-appearance: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  clip-path: inset(100%) !important;
+  transform: scale(0) !important;
+  pointer-events: none !important;
+}
+
+#vertical-tabs-newtab-button,
+#tabs-newtab-button {
+  margin: 4px 8px 10px !important;
+  min-height: 30px !important;
+  padding-inline: 8px !important;
+}
+
+/* No card when resting on a tab. */
+#tab-preview-panel {
+  display: none !important;
+}
+
+/* Suggestions drop in a flat sheet, not a heavy Firefox menu. */
+.urlbarView {
+  background-color: light-dark(#ffffff, #242428) !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  margin-top: 6px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px light-dark(rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.45)) !important;
+}
+
+.urlbarView-body {
+  padding: 4px !important;
+}
+
+.urlbarView-row-inner {
+  border-radius: 8px !important;
+}
+
+.urlbarView-row:hover > .urlbarView-row-inner,
+.urlbarView-row[selected] > .urlbarView-row-inner {
+  background-color: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* Link addresses show as a small pill, not a status bar. */
+#statuspanel {
+  margin: 0 0 10px 10px !important;
+}
+
+#statuspanel-label {
+  background-color: light-dark(#f7f7f8, #2a2a2e) !important;
+  color: light-dark(#3a3a40, #d7d7de) !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  padding: 5px 9px !important;
+  font-size: 12px !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18) !important;
+}
+
+findbar {
+  background-color: light-dark(#f4f4f6, #1c1c1f) !important;
+  border-top: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08)) !important;
+  box-shadow: none !important;
+}
+
+#navigator-toolbox {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Footer icons: smaller and dimmer so they sit in one row. */
+  sidebar-main {
+  --sidebar-launcher-button-padding-inline: 10px;
+  --button-min-height: 28px;
+  --button-size-icon: 16px;
+  --icon-size: 16px;
+  --toolbarbutton-icon-fill: light-dark(#6e6e76, #8e8e96);
+}
+
+#sidebar-tools-and-extensions-splitter {
+  display: none !important;
+}
+
+/*
+ * Folders sit under the pins as one section. Firefox cannot put a folder
+ * inside a folder, so the section itself is the parent. Click its name to
+ * open or close the list. Click a folder name to open that folder.
+ */
+#tabbrowser-tabs:not([movingtab]) #tabbrowser-arrowscrollbox[orient="vertical"] > tab-group {
+  order: 1 !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) #tabbrowser-arrowscrollbox[orient="vertical"] > tab-group[label="Folders"] {
+  order: 0 !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) #tabbrowser-arrowscrollbox[orient="vertical"] > .tabbrowser-tab {
+  order: 2 !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) #tabbrowser-arrowscrollbox[orient="vertical"] > #tabbrowser-arrowscrollbox-periphery {
+  order: 3 !important;
+}
+
+/* The Folders header is only a section label. Its blank page is titled
+   "New Tab" once it loads, and that row was painting over Portals. */
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group[label="Folders"] > .tabbrowser-tab,
+#tabbrowser-arrowscrollbox > .tabbrowser-tab[label="arc-folder-anchor"] {
+  display: none !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group[label="Folders"],
+#tabbrowser-tabs[orient="vertical"][expanded]:not([movingtab]) tab-group[label="Folders"][collapsed] {
+  height: var(--folder-label) !important;
+  min-height: var(--folder-label) !important;
+  max-height: var(--folder-label) !important;
+}
+
+#tabbrowser-tabs:not([movingtab]) #tabbrowser-arrowscrollbox:has(> tab-group[label="Folders"][collapsed]) > tab-group:not([label="Folders"])[collapsed] {
+  display: none !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group[label="Folders"] > .tab-group-label-container .tab-group-label {
+  padding-inline: 24px 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  color: light-dark(#6e6e76, #9a9aa3) !important;
+  background-position: 6px center !important;
+  background-size: 12px 12px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 4.2 L6 8 L9.8 4.2' fill='none' stroke='%239a9aa3' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group[label="Folders"][collapsed] > .tab-group-label-container .tab-group-label {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M4.2 2.2 L8 6 L4.2 9.8' fill='none' stroke='%239a9aa3' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] tab-group:not([label="Folders"]) > .tab-group-label-container {
+  padding-inline-start: 8px !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([pinned]) .tab-label-container,
+.tabbrowser-tab[pinned]:nth-child(n + 21) .tab-label-container {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tab-label {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+
+/* Extensions button: the fifth icon in the bottom row. Opens the usual
+   extensions list, so per-page tools like Dark Reader are one click away. */
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #unified-extensions-button {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  position-anchor: --arc-sidebar !important;
+  z-index: 1002 !important;
+  top: auto !important;
+  bottom: 6px !important;
+  left: 150px !important;
+  left: calc(anchor(center) + 67px) !important;
+  width: 26px !important;
+  min-width: 26px !important;
+  max-width: 26px !important;
+  height: 26px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  --toolbarbutton-icon-fill: light-dark(#6e6e76, #8e8e96);
+  --toolbarbutton-inner-padding: 5px;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #unified-extensions-button:hover {
+  background-color: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* One type size for every row: folders, open tabs, pinned rows, New Tab. */
+#tabbrowser-tabs[orient="vertical"] .tab-label,
+#tabbrowser-tabs[orient="vertical"] .tab-group-label {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+}
+
+/* Selected tab: a soft pill only. Firefox draws a colored ring around it. */
+.tabbrowser-tab .tab-background,
+.tabbrowser-tab .tab-background::before,
+.tabbrowser-tab .tab-background::after,
+.tabbrowser-tab:focus-visible .tab-background {
+  outline: none !important;
+  border-image: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.tabbrowser-tab:not([pinned]) .tab-background {
+  border: 0 !important;
+}
+
+/* Rows warm up and cool down instead of snapping. */
+.tabbrowser-tab .tab-background,
+.tab-group-label {
+  transition: background-color 140ms ease !important;
+}
+
+/* The scroll bar only appears while the pointer is over the list. */
+#tabbrowser-tabs:not(:hover) {
+  scrollbar-color: transparent transparent !important;
+}
+
+/* Back, forward, reload and the extensions button all light up the same way. */
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #back-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #forward-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-button {
+  border-radius: 6px !important;
+  transition: background-color 140ms ease !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #back-button:not([disabled]):hover,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #forward-button:not([disabled]):hover,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #reload-button:not([disabled]):hover,
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #stop-button:not([disabled]):hover {
+  background-color: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08)) !important;
+}
+
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #unified-extensions-button {
+  transition: background-color 140ms ease !important;
+}
+
+/* Footer icon buttons: rounded squares like every other icon, not circles. */
+sidebar-main,
+sidebar-main moz-button,
+moz-button {
+  --border-radius-circle: 10px !important;
+  --button-border-radius: 10px !important;
+}
+
+/*
+ * Centre the footer icon row. Firefox pads that row by --space-medium and
+ * left-aligns it, so the padding is set to half the sidebar width minus half
+ * the row, for the sidebar only. The tab list inside it gets the original
+ * value back.
+ */
+:root {
+  --arc-space-medium: var(--space-medium);
+}
+
+sidebar-main {
+  --space-medium: calc(50% - 96px) !important;
+}
+
+#vertical-tabs {
+  --space-medium: var(--arc-space-medium) !important;
+}
+
+/* Round the sidebar's page-facing corners to match the window's own corners. */
+:root:not([customizing]):has(#sidebar-container[sidebar-launcher-expanded]) #sidebar-container {
+  border-start-end-radius: 20px !important;
+  border-end-end-radius: 20px !important;
+  overflow: clip !important;
+}
+
+/* Keep the translate and reader icons in the address field. Firefox shows it only on pages in another language. */
+:root:not([customizing]) #page-action-buttons {
+  display: flex !important;
+}

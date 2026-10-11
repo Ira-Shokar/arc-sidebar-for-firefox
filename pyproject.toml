@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arc-sidebar-for-firefox"
+version = "0.1.0"
+description = "Make Firefox look and feel like Arc"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS",
+  "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/Ira-Shokar/arc-sidebar-for-firefox"
+Issues = "https://github.com/Ira-Shokar/arc-sidebar-for-firefox/issues"
+
+[project.scripts]
+arc-sidebar-install = "arc_sidebar_for_firefox.cli:main"
+
+[tool.setuptools]
+packages = ["arc_sidebar_for_firefox"]
+
+[tool.setuptools.package-data]
+arc_sidebar_for_firefox = ["versions/*/*", "versions/*/chrome/*"]

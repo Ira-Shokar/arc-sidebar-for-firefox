@@ -1,0 +1,19 @@
+{
+  "toggleSidebarKb": {
+    "modifiers": "accel",
+    "key": "B"
+  },
+  "viewBookmarksSidebarKb": {},
+  "key_newNavigatorTab": {
+    "modifiers": "accel,alt",
+    "key": "T"
+  },
+  "focusURLBar": {
+    "modifiers": "accel",
+    "key": "T"
+  },
+  "key_search": {
+    "modifiers": "accel",
+    "key": "L"
+  }
+}

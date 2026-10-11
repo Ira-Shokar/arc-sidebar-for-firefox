@@ -1,0 +1,35 @@
+name: Bug report
+description: Something looks wrong or stopped working
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include a screenshot if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: false
+  - type: input
+    id: firefox
+    attributes:
+      label: Firefox version and system
+      description: Find the version in Firefox, About Firefox.
+      placeholder: "Firefox 157, macOS 26"
+    validations:
+      required: true
+  - type: dropdown
+    id: restarted
+    attributes:
+      label: Did you quit Firefox with Cmd+Q and reopen it after installing or changing anything?
+      description: Firefox reads the styles only at startup.
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
